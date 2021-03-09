@@ -1,9 +1,9 @@
 # Cloud Network
-This is a collection of Linux Scripts and Ansible Scripts from my Cyber Class.
+This is a collection of Ansible Scripts from my Cybersecurity class.
 
-Most of the scripts are used to configure cloud servers with differnt docker containers.
+Most of the scripts are used to configure cloud servers with different docker containers.
 
-The final setup was 4 servers running vulnerable DVWA containers along with a jump box and a server running an ELK stack container.
+The final setup was 4 servers running vulnerable DVWA containers, a jump box, and a server running an ELK stack container.
 
 ![](Diagrams/Network%20Diagram.PNG)
 
@@ -21,11 +21,11 @@ The configuration details of each machine may be found below.
 
 # Access Policies
 
-The machines on the internal network are not exposed to the public Internet. The Jump-box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses
+The machines on the internal network are not exposed to the public Internet. The Jump-box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses.
 
 SSH port 22
 
-Machines within the network can only be accessed by Jump-Box-Provisioner. Which machine did you allow to access your ELK VM - Jump-Box-Provisioner.
+Machines within the network can only be accessed by Jump-Box-Provisioner. Which machine did you allow to access your ELK VM - Jump-Box-Provisioner?
 
 Private IP address - 10.0.0.4
 
@@ -45,7 +45,7 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 
 What is the main advantage of automating configuration with Ansible?
 
-The playbook implements the following tasks: Install docker.io, Install pip3, Install Docker python module
+The playbook implements the following tasks: Install docker.io, Install pip3, and Install Docker python module.
 
 # Target Machines & Beats
 
