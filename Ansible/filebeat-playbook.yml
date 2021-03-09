@@ -1,0 +1,59 @@
+---
+  - name: Install filebeat and copy config files
+    hosts: webservers
+    remote_user: peabody
+    become: true
+    tasks:
+      # Download the filebeat .deb file from artifacts.elastic.co
+      - name: Download .deb file
+        command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-amd64.deb
+
+      # Install the filebeat .deb file
+      - name: Install the .deb file
+        command: dpkg -i filebeat-7.4.0-amd64.deb
+
+      # Copy the Filebeat configuration file from your Ansible container to your WebVM's
+      - name: Copy filebeat config file from Ansible
+        copy:
+          src: /etc/ansible/files/filebeat-config.yml
+          dest: /etc/filebeat/filebeat.yml
+
+      # Use command module
+      - name: Enable and Configure System Module
+        command: filebeat modules enable system
+
+      # Use command module
+      - name: Setup filebeat
+        command: filebeat setup
+
+      # Use command module
+      - name: Start filebeat service
+        command: service filebeat start
+
+      ##Bonus - Metricbeat##
+
+      # Download the metricbeat .deb file from artifacts.elastic.co
+      - name: Download metricbeat .deb file
+        command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.4.0-amd64.deb
+
+      # Install the metricbeat .deb file
+      - name: Install the meticbeat .deb file
+        command: dpkg -i metricbeat-7.4.0-amd64.deb
+
+      # Update and copy the metricbeat config file
+      - name: Update and copy metricbeat config file
+        copy:
+          src: /etc/ansible/files/metricbeat-config.yml
+          dest: /etc/metricbeat/metricbeat.yml
+
+      # Bonus - Use command module
+      - name: Enable and Configure System Module - Bonus
+        command: metricbeat modules enable docker
+
+      # Bonus - Use command module
+      - name: Setup metricbeat
+        command: metricbeat setup
+
+      # Bonus - Use command module
+      - name: Start metricbeat service
+        command: service metricbeat start
